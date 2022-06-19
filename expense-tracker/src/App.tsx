@@ -9,7 +9,7 @@ import { getCurrentMonth, filterListByMonth } from './helpers/dateFilter';
 
 import { TableArea } from './components/TableArea';
 import { InfoArea } from './components/InfoArea';
-import { Table } from './components/TableArea/styles';
+import { InputArea } from './components/InputArea';
 
 const App = () => {
 
@@ -45,6 +45,12 @@ const App = () => {
     setCurrentMonth(newMonth);
   }
 
+  const handleAddItem = (item: Item) => {
+    let newList = [...list];
+    newList.push(item);
+    setList(newList);
+  }
+
   return (
     <C.Container>
       <C.Header>
@@ -53,16 +59,13 @@ const App = () => {
         </C.HeaderText>
       </C.Header>
       <C.Body>
-        {/* Área de Informações */}
         <InfoArea 
           currentMonth={currentMonth} 
           onMonthChange={handleMonthChange}
           income={income}
           expense={expense }
         />
-        {/* Área de Inserção */}
-
-        {/* Tabela de Itens */}
+        <InputArea onAdd = {handleAddItem}/>
         <TableArea list={filteredList}></TableArea>
       </C.Body>
     </C.Container>
